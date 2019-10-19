@@ -6,8 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Oh, the Horror!</title>
-    <link rel="stylesheet" type="text/css" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="javascript/javascript.js"></script>
 </head>
 
 <body>
@@ -16,74 +18,12 @@
         <div id="buttons-list"></div>
 
         <form id="main-form">
-            <label for="monster-input">Slay, girl.</label>
+            <label for="monster-input" id ="input-label">Slay, girl.</label>
             <input type="text" id="monster-input"><br>
             <input id="add-monster" type="submit" value="Add your favorite monster">
         </form>
 
         <div id="monsters-group"></div>
-
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-        <script type="text/javascript">
-            $(document).ready(function() {
-
-                var topics = ["vampire", "werewolf", "chupacabra", "bigfoot", "banshee", "zombie"];
-                console.log(topics);
-                renderButtons();
-
-                 //shows the data
-                 function renderButtons() {
-                    $("#buttons-list").empty();
-
-                    for (var i = 0; i < topics.length; i++) {
-                            var  x = $("<button>");
-                            x.addClass("monster");
-                            x.attr("data-name", topics[i]);
-                            x.text(topics[i]);
-                            $("#buttons-list").append(x);
-                            console.log(topics[i]);
-                    }
-                }
-            
-                //add monsters to list via button click
-                $("#add-monster").on("click", function(event){
-                    event.preventDefault();
-                    var monster = $("#monster-input").val().trim();
-                    topics.push(monster);
-
-                    renderButtons();
-                });
-            $(".monster").on("click", riseFromYourGrave);
-
-            function riseFromYourGrave() {
-                $("#monsters-group").empty();
-                var monster = $(this).attr("data-name");
-                console.log(monster);
-                var APIkey = "og23w3l5tpgYMZ8qUuUFrPtAfkum6FGN";
-                var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + monster + "&api_key=" + APIkey + "&limit=10";
-                
-                
-                //AJAX call 
-                $.ajax({
-                    url: queryURL,
-                    method: "GET"
-                }).then(function(response){
-                    console.log(response);
-                    var results = response.data;
-                    for (var i = 0; i <results.length; i++){
-                    var imageURL = results[i].images.fixed_height.url;
-                    var monsterImage = $("<img>");
-
-                    monsterImage.attr("src", imageURL);
-                    monsterImage.attr("alt", "monster image");
-
-                    $("#monsters-group").append(monsterImage);
-                    }
-                });
-               
-            }
-        });
-    </script>
     </div>
 </body>
 

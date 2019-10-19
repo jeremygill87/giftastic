@@ -1,0 +1,23 @@
+@font-face {
+    font-family: 'diediedieregular';
+    src: url('../css/diediedi-webfont.woff2') format('woff2'),
+         url('../css/diediedi-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+h1 {
+    font-family: 'diediedieregular';
+    color: #bb0a1e;
+    font-size: 36px;
+}
+
+body {
+    background-color: #222222;
+}
+
+#input-label {
+    font-family: 'diediedieregular';
+    color: #bb0a1e;
+    font-size: 26px;
+}
